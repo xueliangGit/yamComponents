@@ -1,0 +1,41 @@
+<!--
+ * @Author: xuxueliang
+ * @Date: 2019-06-20 03:18:16
+ * @LastEditors: xuxueliang
+ * @LastEditTime: 2019-09-02 19:21:51
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,max-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>BC-DEMO</title>
+    <style>
+      up-img {
+        width: 150px;
+        height: 110px;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <my-home></my-home>
+    <up-img uploadok="uploadok" serverUrl="/s/uppic" title="上传图片"></up-img>
+    <data-picker id="dataPicker" change="fun" showZg="true"></data-picker>
+    <date-picker id="datePicker" change="fun" showZg="true"></date-picker>
+    <script>
+      function fun() {
+        console.log(arguments);
+        showinfo.innerText = arguments[0];
+      }
+      function uploadok(obj) {
+        console.log(obj);
+      }
+    </script>
+    <script src="http://127.0.0.1:5006/test/2018-9-7/app/dist/yam.componet.min.js"></script>
+  </body>
+</html>
