@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1,max-scale=1"><meta http-equiv=X-UA-Compatible content="ie=edge"><title>BC-DEMO</title><style>up-img {
+        width: 150px;
+        height: 110px;
+        display: block;
+      }</style></head><body><switch-tab tabs=a,b></switch-tab><my-home></my-home><up-img uploadok=uploadok serverurl=/s/uppic title=上传图片></up-img><data-picker id=dataPicker change=fun showzg=true></data-picker><date-picker id=datePicker change=fun showzg=true></date-picker><script>function fun() {
+        console.log(arguments);
+        showinfo.innerText = arguments[0];
+      }
+      function uploadok(obj) {
+        console.log(obj);
+      }</script><script src=http://127.0.0.1:5006/test/2018-9-7/app/dist/yam.componet.min.js></script><script type=text/javascript src=js/vendors.f2da87af7e9d8f317c28.bundle.js></script><script type=text/javascript src=js/index.7a10efec5f76d01d0622.bundle.js></script></body></html>

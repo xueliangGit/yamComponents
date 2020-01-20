@@ -1,3 +1,9 @@
+/*
+ * @Author: xuxueliang
+ * @Date: 2019-10-12 11:43:13
+ * @LastEditors: xuxueliang
+ * @LastEditTime: 2019-10-12 11:43:13
+ */
 'use strict'
 // Template version: 1.3.1
 // see http://vuejs-templates.github.io/webpack for documentation.
@@ -19,11 +25,11 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/?*/+([^.-])': {
-        target: 'https://0.0.0.0',
+        target: 'https://ey.myhug.cn',
         changeOrigin: true
       },
       '/?*/?*/+([^.-])': {
-        target: 'https://0.0.0.0',
+        target: 'https://ey.myhug.cn',
         changeOrigin: true
       }
     },

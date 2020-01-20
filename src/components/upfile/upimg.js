@@ -2,14 +2,14 @@
  * @Author: xuxueliang
  * @Date: 2019-08-16 17:53:23
  * @LastEditors: xuxueliang
- * @LastEditTime: 2019-08-21 17:48:16
+ * @LastEditTime: 2019-10-12 14:30:24
  */
 import Yam, { Component } from 'yamjs'
 import style from './upimg1.stylus'
 @Component({
   tagName: 'up-img',
   style: style,
-  props: ['serverurl', 'title', 'type'],
+  props: ['serverurl', 'title', 'type', 'suffix'],
   canBeCalledExt: true
 })
 
@@ -26,12 +26,14 @@ class App extends Yam {
     console.log(this.title)
   }
   change (e) {
-    this.isLoading = true
-    this.loadingInfo = '加载中...'
-    if (this.serverurl) {
-      this.upLoad(e.target.files[0])
-    } else {
-      this.updateUrl({ picUrl: preImg(e.target) })
+    if (e.target.files && e.target.files[0] && e.target.files[0].name) {
+      this.isLoading = true
+      this.loadingInfo = '加载中...'
+      if (this.serverurl) {
+        this.upLoad(e.target.files[0])
+      } else {
+        this.updateUrl({ picUrl: preImg(e.target) })
+      }
     }
   }
   updateUrl (obj) {
@@ -43,7 +45,7 @@ class App extends Yam {
     let params = new FormData()
     params.append('type', this.type || 0)
     params.append('picFile', file, file.name)
-    console.log(file)
+    // console.log(file)
     window.fetch(this.serverurl, {
       method: 'post',
       body: params,
@@ -61,6 +63,10 @@ class App extends Yam {
           this.isLoading = false
         }, 500)
         console.log(error)
+      }).finally(() => {
+        setTimeout(() => {
+          this.isLoading = false
+        }, 500)
       })
     return false
   }
@@ -71,11 +77,11 @@ class App extends Yam {
     </div>
   }
   render () {
-    console.log(this.imgUrl)
+    // console.log(this.imgUrl)
     return <div class='upfile'>
       <label>
-        <input type='file' onChange={this.change.bind(this)} accecpt='image/*' />
-        { this.imgUrl ? <div class='showimg' style={{ backgroundImage: 'url(' + this.imgUrl + ')' }} /> : this.isLoading ? '' : <p>+</p> }
+        <input type='file' onChange={this.change.bind(this)} accept='image/*' />
+        { this.imgUrl ? <div class='showimg' style={{ backgroundImage: 'url(' + this.imgUrl + (this.suffix || '') + ')' }} /> : this.isLoading ? '' : <p>+</p> }
         { this.isLoading ? this.loading() : '' }
       </label>
     </div>
