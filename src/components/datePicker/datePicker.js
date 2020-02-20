@@ -88,13 +88,13 @@ class datePicker extends Yam {
       dIndex: 0// 当前的日
     })
     let data = year[this.state.yIndex] + '-' + month[this.state.mIndex] +
-    '-' + day[this.state.dIndex]
+      '-' + day[this.state.dIndex]
     this.elm.value = data
     let lunar = calendar.solar2lunar(...this.elm.value.split('-'))
     this.gzYear = lunar.gzYear
     this.gzMonth = lunar.gzMonth
     this.gzDay = lunar.gzDay
-    this.showDate = `${this.elm.value}(${lunar.gzYear}${lunar.gzMonth}${lunar.gzDay})`
+    this.showDate = `${ this.elm.value }(${ lunar.gzYear }${ lunar.gzMonth }${ lunar.gzDay })`
     this.elm.lunar = this.gzYear + this.gzMonth + this.gzDay
     this.lunarDate = this.elm.lunar
   }
@@ -106,11 +106,11 @@ class datePicker extends Yam {
       this.gzYear = lunar.gzYear
       this.gzMonth = lunar.gzMonth
       this.gzDay = lunar.gzDay
-      this.showDate = `${this.elm.value}(${lunar.gzYear}${lunar.gzMonth}${lunar.gzDay})`
+      this.showDate = `${ this.elm.value }(${ lunar.gzYear }${ lunar.gzMonth }${ lunar.gzDay })`
       this.elm.lunar = this.gzYear + this.gzMonth + this.gzDay
     } else {
       console.log('showzg-false', this.showzg)
-      this.showDate = `${this.elm.value}`
+      this.showDate = `${ this.elm.value }`
     }
     // this.emitProp('d', data, this.elm.lunar)
   }
@@ -136,9 +136,9 @@ class datePicker extends Yam {
     switch (type) {
       case 'year':// 年带动月日变化
         isInStartYear = this.state.year[index] ===
-        this.startYear
+          this.startYear
         isInEndYear = this.state.year[index] ===
-        this.endYear
+          this.endYear
         isInStartYearmonth = this.state.month[0] ===
           this.startMonth
         isInEndYearmonth = this.state.month[0] ===
@@ -226,20 +226,20 @@ class datePicker extends Yam {
     return (
       <div className='dialog'>
         <div className='buttons'>
-          <span onClick={this.hide.bind(this)} className='button left'>取消</span>
-          <div className='title '>{this.showzg ? this.elm.value + '(' + this.lunarDate + ')' : this.elm.value }</div>
-          <span onClick={this.dateSure.bind(this)} className='button right'>确定</span>
+          <span onClick={ this.hide.bind(this) } className='button left'>取消</span>
+          <div className='title '>{ this.showzg ? this.elm.value + '(' + this.lunarDate + ')' : this.elm.value }</div>
+          <span onClick={ this.dateSure.bind(this) } className='button right'>确定</span>
         </div>
         <div className='box' >
-          <wheel-view className='year dib' type='year' gzName={this.showzg ? this.gzYear : ''} data={this.state.year}
-            index={this.state.yIndex}
-            onDataChange={this.onDataChange.bind(this)} />
-          <WheelView className='month dib' type='month' gzName={this.showzg ? this.gzMonth : ''} data={this.state.month}
-            index={this.state.mIndex}
-            onDataChange={this.onDataChange.bind(this)} />
-          <WheelView className='day dib' type='day' gzName={this.showzg ? this.gzDay : ''} data={this.state.day}
-            index={this.state.dIndex}
-            onDataChange={this.onDataChange.bind(this)} />
+          <wheel-view className='year dib' type='year' gzName={ this.showzg ? this.gzYear : '' } data={ this.state.year }
+            index={ this.state.yIndex }
+            onDataChange={ this.onDataChange.bind(this) } />
+          <WheelView className='month dib' type='month' gzName={ this.showzg ? this.gzMonth : '' } data={ this.state.month }
+            index={ this.state.mIndex }
+            onDataChange={ this.onDataChange.bind(this) } />
+          <WheelView className='day dib' type='day' gzName={ this.showzg ? this.gzDay : '' } data={ this.state.day }
+            index={ this.state.dIndex }
+            onDataChange={ this.onDataChange.bind(this) } />
         </div>
       </div>
     )

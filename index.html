@@ -1,8 +1,8 @@
 <!--
  * @Author: xuxueliang
  * @Date: 2019-06-20 03:18:16
- * @LastEditors  : xuxueliang
- * @LastEditTime : 2019-12-19 14:20:11
+ * @LastEditors: xuxueliang
+ * @LastEditTime: 2020-02-19 14:46:47
  -->
 <!DOCTYPE html>
 <html lang="en">
@@ -25,16 +25,21 @@
   <body>
     <switch-tab tabs="a,b"></switch-tab>
     <my-home></my-home>
-    <up-img uploadok="uploadok" serverUrl="/s/uppic" title="上传图片"></up-img>
+    <multi-upimg
+      width="90"
+      height="90"
+      uploadok="uploadok"
+      title="上传图片"
+    ></multi-upimg>
     <data-picker id="dataPicker" change="fun" showZg="true"></data-picker>
     <date-picker id="datePicker" change="fun" showZg="true"></date-picker>
     <script>
       function fun() {
-        console.log(arguments);
-        showinfo.innerText = arguments[0];
+        console.log(arguments)
+        showinfo.innerText = arguments[0]
       }
       function uploadok(obj) {
-        console.log(obj);
+        console.log('uploadok', obj)
       }
     </script>
     <script src="http://127.0.0.1:5006/test/2018-9-7/app/dist/yam.componet.min.js"></script>

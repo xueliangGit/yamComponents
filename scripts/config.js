@@ -2,7 +2,7 @@
  * @Author: xuxueliang
  * @Date: 2019-08-13 18:50:38
  * @LastEditors: xuxueliang
- * @LastEditTime: 2019-10-12 12:02:11
+ * @LastEditTime: 2020-02-19 14:52:42
  */
 const postcss = require('rollup-plugin-postcss')
 const varsa = require('postcss-simple-vars')
@@ -16,7 +16,7 @@ const alias = require('rollup-plugin-alias')
 const cjs = require('rollup-plugin-commonjs')
 const replace = require('rollup-plugin-replace')
 const node = require('rollup-plugin-node-resolve')
-
+const image = require('rollup-plugin-img')
 // const flow = require('rollup-plugin-flow-no-whitespace')
 const version = process.env.VERSION || require('../package.json').version
 const yamConf = require('yamjs/package.json')
@@ -25,11 +25,11 @@ const featureFlags = {} || require('./feature-flags')
 
 const banner =
   '/*!\n' +
-  ` * Yam.js v${yamConf.version}\n` +
-  ` * (c) 2019-${new Date().getFullYear()} xuxueliang\n` +
+  ` * Yam.js v${ yamConf.version }\n` +
+  ` * (c) 2019-${ new Date().getFullYear() } xuxueliang\n` +
   ' * Released under the MIT License.\n' +
-  ` * this Components is builded by YAM-CLI - v${version}\n` + // 要输出的注释内容\n` +
-  ` * lastTime:${new Date()}.\n` +
+  ` * this Components is builded by YAM-CLI - v${ version }\n` + // 要输出的注释内容\n` +
+  ` * lastTime:${ new Date() }.\n` +
   ' */'
 
 const weexFactoryPlugin = {
@@ -87,6 +87,9 @@ function genConfig (name) {
     input: opts.entry,
     external: opts.external,
     plugins: [
+      image({
+        limit: 10000
+      }),
       postcss({
         include: ['**/*.styl'],
         plugins: [
@@ -142,7 +145,7 @@ function genConfig (name) {
   }
   // feature flags
   Object.keys(featureFlags).forEach(key => {
-    vars[`process.env.${key}`] = featureFlags[key]
+    vars[`process.env.${ key }`] = featureFlags[key]
   })
   // build-specific env
   if (opts.env) {

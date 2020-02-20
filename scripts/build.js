@@ -2,7 +2,7 @@
  * @Author: xuxueliang
  * @Date: 2019-08-13 19:10:43
  * @LastEditors: xuxueliang
- * @LastEditTime: 2019-08-21 17:06:30
+ * @LastEditTime: 2020-02-19 15:00:24
  */
 const fs = require('fs')
 const path = require('path')
@@ -53,15 +53,17 @@ function buildEntry (config) {
     .then(bundle => bundle.generate(output))
     .then(({ output: [{ code }] }) => {
       if (isProd) {
-        const minified = (banner ? banner + '\n' : '') + terser.minify(code, {
-          toplevel: true,
-          output: {
-            ascii_only: true
-          },
-          compress: {
-            pure_funcs: ['makeMap']
-          }
-        }).code
+        const minified =
+          '/* eslint-disable */ ' +// (banner ? banner + '\n' : '') +
+          terser.minify(code, {
+            toplevel: true,
+            output: {
+              ascii_only: true
+            },
+            compress: {
+              pure_funcs: ['makeMap']
+            }
+          }).code
         return write(file, minified, true)
       } else {
         return write(file, code)

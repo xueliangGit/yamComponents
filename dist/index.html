@@ -2,10 +2,10 @@
         width: 150px;
         height: 110px;
         display: block;
-      }</style></head><body><switch-tab tabs=a,b></switch-tab><my-home></my-home><up-img uploadok=uploadok serverurl=/s/uppic title=上传图片></up-img><data-picker id=dataPicker change=fun showzg=true></data-picker><date-picker id=datePicker change=fun showzg=true></date-picker><script>function fun() {
-        console.log(arguments);
-        showinfo.innerText = arguments[0];
+      }</style></head><body><switch-tab tabs=a,b></switch-tab><my-home></my-home><mulit-upimg width=90 height=90 uploadok=uploadok title=上传图片></mulit-upimg><data-picker id=dataPicker change=fun showzg=true></data-picker><date-picker id=datePicker change=fun showzg=true></date-picker><script>function fun() {
+        console.log(arguments)
+        showinfo.innerText = arguments[0]
       }
       function uploadok(obj) {
-        console.log(obj);
-      }</script><script src=http://127.0.0.1:5006/test/2018-9-7/app/dist/yam.componet.min.js></script><script type=text/javascript src=js/vendors.f2da87af7e9d8f317c28.bundle.js></script><script type=text/javascript src=js/index.7a10efec5f76d01d0622.bundle.js></script></body></html>
+        console.log('uploadok', obj)
+      }</script><script src=http://127.0.0.1:5006/test/2018-9-7/app/dist/yam.componet.min.js></script><script type=text/javascript src=js/vendors.f06c5316fa15cb989364.bundle.js></script><script type=text/javascript src=js/index.9378665d1f1c367d38a2.bundle.js></script></body></html>

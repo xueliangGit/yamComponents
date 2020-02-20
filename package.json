@@ -76,6 +76,7 @@
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-buble": "^0.19.8",
     "rollup-plugin-commonjs": "^10.0.2",
+    "rollup-plugin-img": "^1.1.0",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-replace": "^2.2.0",
@@ -100,7 +101,7 @@
     "postcss-preset-env": "^6.7.0",
     "postcss-simple-vars": "^5.0.2",
     "rollup-plugin-postcss": "^2.0.3",
-    "yamjs": "^0.3.3"
+    "yamjs": "^0.3.4"
   },
   "engines": {
     "node": ">= 6.0.0",

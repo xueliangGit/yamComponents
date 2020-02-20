@@ -2,14 +2,14 @@
  * @Author: xuxueliang
  * @Date: 2019-08-16 17:53:23
  * @LastEditors: xuxueliang
- * @LastEditTime: 2019-10-12 14:30:24
+ * @LastEditTime: 2020-02-19 14:54:58
  */
 import Yam, { Component } from 'yamjs'
 import style from './upimg1.stylus'
 @Component({
   tagName: 'up-img',
   style: style,
-  props: ['serverurl', 'title', 'type', 'suffix'],
+  props: ['serverurl', 'title', 'type', 'suffix', 'canEdit', 'selelctOnly'],
   canBeCalledExt: true
 })
 
@@ -37,8 +37,10 @@ class App extends Yam {
     }
   }
   updateUrl (obj) {
-    this.imgUrl = obj.picUrl
     this.emitProp('uploadok', obj)
+    if (!this.selelctOnly) {
+      this.imgUrl = obj.picUrl
+    }
     this.isLoading = false
   }
   upLoad (file) {
@@ -71,20 +73,20 @@ class App extends Yam {
     return false
   }
   loading () {
-    return <div onClick={(e) => { e.preventDefault() }} class='loading'>
+    return <div onClick={ (e) => { e.preventDefault() } } class='loading'>
       <div>{ this.loadingInfo }</div>
       <span />
     </div>
   }
   render () {
     // console.log(this.imgUrl)
-    return <div class='upfile'>
-      <label>
-        <input type='file' onChange={this.change.bind(this)} accept='image/*' />
-        { this.imgUrl ? <div class='showimg' style={{ backgroundImage: 'url(' + this.imgUrl + (this.suffix || '') + ')' }} /> : this.isLoading ? '' : <p>+</p> }
+    return <div class={ `upfile ${ this.imgUrl ? '' : 'showbk' }` }>
+      <label >
+        <input type='file' onChange={ this.change.bind(this) } accept='image/*' />
+        { this.imgUrl ? <div class='showimg' style={ { backgroundImage: 'url(' + this.imgUrl + (this.suffix || '') + ')' } } /> : this.isLoading ? '' : <span>+</span> }
         { this.isLoading ? this.loading() : '' }
       </label>
-    </div>
+    </div >
   }
 }
 export default App
@@ -97,6 +99,7 @@ function preImg (node) {
     } else if (node.files && node.files.item(0)) {
       file = node.files.item(0)
     }
+    node.value = ''
     // Firefox 因安全性问题已无法直接通过input[file].value 获取完整的文件路径
     try {
       imgURL = file.getAsDataURL()
