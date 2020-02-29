@@ -2,7 +2,7 @@
  * @Author: xuxueliang
  * @Date: 2019-08-13 19:10:43
  * @LastEditors: xuxueliang
- * @LastEditTime: 2020-02-19 15:00:24
+ * @LastEditTime: 2020-02-29 19:56:24
  */
 const fs = require('fs')
 const path = require('path')
@@ -54,11 +54,12 @@ function buildEntry (config) {
     .then(({ output: [{ code }] }) => {
       if (isProd) {
         const minified =
-          '/* eslint-disable */ ' +// (banner ? banner + '\n' : '') +
+          '/* eslint-disable */ \n' + (banner ? banner + '\n' : '') +
           terser.minify(code, {
             toplevel: true,
             output: {
-              ascii_only: true
+              ascii_only: true,
+              comments: false
             },
             compress: {
               pure_funcs: ['makeMap']

@@ -1,11 +1,23 @@
-<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1,max-scale=1"><meta http-equiv=X-UA-Compatible content="ie=edge"><title>BC-DEMO</title><style>up-img {
-        width: 150px;
-        height: 110px;
-        display: block;
-      }</style></head><body><switch-tab tabs=a,b></switch-tab><my-home></my-home><mulit-upimg width=90 height=90 uploadok=uploadok title=上传图片></mulit-upimg><data-picker id=dataPicker change=fun showzg=true></data-picker><date-picker id=datePicker change=fun showzg=true></date-picker><script>function fun() {
-        console.log(arguments)
-        showinfo.innerText = arguments[0]
-      }
-      function uploadok(obj) {
-        console.log('uploadok', obj)
-      }</script><script src=http://127.0.0.1:5006/test/2018-9-7/app/dist/yam.componet.min.js></script><script type=text/javascript src=js/vendors.f06c5316fa15cb989364.bundle.js></script><script type=text/javascript src=js/index.9378665d1f1c367d38a2.bundle.js></script></body></html>
+<!--
+ * @Author: xuxueliang
+ * @Date: 2020-02-29 18:46:52
+ * @LastEditors: xuxueliang
+ * @LastEditTime: 2020-02-29 19:31:40
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="./yamComponet.min.js"></script>
+    <multi-upimg
+      width="90"
+      height="90"
+      uploadok="uploadok"
+      title="上传图片"
+    ></multi-upimg>
+  </body>
+</html>
