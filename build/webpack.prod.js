@@ -2,7 +2,7 @@
  * @Author: xuxueliang
  * @Date: 2019-06-20 03:18:16
  * @LastEditors: xuxueliang
- * @LastEditTime: 2019-08-19 16:48:00
+ * @LastEditTime: 2020-03-08 00:28:39
  */
 // webpack.prod.js
 const merge = require('webpack-merge')
@@ -23,14 +23,15 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 module.exports = merge(common, {
   mode: 'production',
   output: {
-    filename: 'js/[name].[chunkhash].bundle.js',
-    path: path.resolve(__dirname, '../dist') // 定义输出文件夹dist路径
+    filename: utils.assetsPath('js/[name].[chunkhash].js'),
+    chunkFilename: utils.assetsPath('js/[name].[chunkhash].js'),
+    path: config.build.assetsRoot // 定义输出文件夹dist路径
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
-    new webpack.DefinePlugin({
-      'process.env': 'production'
-    }),
+    // new webpack.DefinePlugin({
+    //   'process.env': 'production'
+    // }),
 
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -78,7 +79,7 @@ module.exports = merge(common, {
       chunksSortMode: 'dependency'
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].css'
+      filename: utils.assetsPath('js/[name].[chunkhash].css'),
     }),
     new webpack.BannerPlugin(
       {

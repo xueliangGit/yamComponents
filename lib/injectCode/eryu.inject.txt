@@ -1,0 +1,22 @@
+<style>
+    .isloading {
+      min-height: 78vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      color: #666;
+      text-align: center;
+    }
+  .isloading img {
+    width: 80px;
+    margin: 10px auto;
+    display: block;
+  }
+</style>
+<div class="isloading">
+    <div class="">
+      <img src='http://pws.myhug.cn/npic/w/9/20200110175017_4e792f9c361a31ea93afe22b3e66967f'>
+      数据加载中...
+    </div>
+  </div>

@@ -2,7 +2,7 @@
  * @Author: xuxueliang
  * @Date: 2019-06-20 03:18:16
  * @LastEditors: xuxueliang
- * @LastEditTime: 2019-08-15 19:30:55
+ * @LastEditTime: 2020-03-11 11:56:57
  */
 // webpack.common.js
 const path = require('path')
@@ -27,12 +27,14 @@ module.exports = {
   entry: {
     index: './src/index.js'
   },
-
   resolve: {
     extensions: ['.js', '.vue', '.json', '.css', '.scss', 'styl'], // 添加在此的后缀所对应的文件可以省略后缀
     alias: {
       // 'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src')
+      '@': resolve('src'),
+      '@lib': resolve('lib') || '/Users/xuxueliang/mywork/xsb/act/xsb/lib',
+      '@assets': resolve('src/assets'),
+      '@api': resolve('src/api')
     }
   },
   module: {
@@ -40,14 +42,19 @@ module.exports = {
       ...(config.dev.useEslint ? [createLintingRule()] : []),
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        include: [resolve('src'), resolve('node_modules/webpack-dev-server/client')]
+        use: [
+          'babel-loader',
+          {
+            loader: path.resolve(__dirname, '../yamloader/loader.js'),
+          }
+        ],
+        include: [resolve('src'), resolve('lib'), resolve('node_modules/webpack-dev-server/client')]
       },
-      {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        include: [resolve('lib'), resolve('node_modules/yamjs/src'), resolve('node_modules/lib')]
-      },
+      // {
+      //   test: /\.js$/,
+      //   loader: 'babel-loader',
+      //   // include: [resolve('lib'), '/Users/xuxueliang/mywork/xsb/act/xsb/lib', resolve('node_modules/yamjs/src'), resolve('node_modules/lib')]
+      // },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
@@ -72,39 +79,42 @@ module.exports = {
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
       },
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: '../' // 可以配置输出的css文件路径
-            }
-          },
-          'css-loader'
-        ]
-      }, {
-        test: /\.styl$/,
-        use: [
-          { loader: MiniCssExtractPlugin.loader },
-          'css-loader',
-          'postcss-loader',
-          'stylus-loader'
-        ]
-      },
-      {
-        test: /\.stylus$/,
-        use: [
-          // { loader: MiniCssExtractPlugin.loader },
-          'css-loader',
-          'postcss-loader',
-          'stylus-loader'
-        ]
-      },
+      // {
+      //   test: /\.css$/,
+      //   use: [
+      //     {
+      //       loader: MiniCssExtractPlugin.loader,
+      //       options: {
+      //         publicPath: '../' // 可以配置输出的css文件路径
+      //       }
+      //     },
+      //     'css-loader'
+      //   ]
+      // },
+      // {
+      //   test: /\.styl$/,
+      //   use: [
+      //     {
+      //       loader: MiniCssExtractPlugin.loader,
+      //     },
+      //     'css-loader',
+      //     'postcss-loader',
+      //     'stylus-loader'
+      //   ]
+      // },
+      // {
+      //   test: /\.styl(us)?$/,
+      //   use: [
+      //     // { loader: MiniCssExtractPlugin.loader },
+      //     'css-loader',
+      //     'postcss-loader',
+      //     'stylus-loader'
+      //   ]
+      // },
       {
         test: /\.html$/,
         use: 'text-loader'
       }
     ]
-  }
+  },
 }

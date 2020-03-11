@@ -1,0 +1,30 @@
+开始录音
+ eryu://jump#{type:"startRecord",callBack:"startRecord",timeUpdateCallBack:"timeUpdate"} // 需要执行成回调函数  回调的参数是 
+
+{
+  success:true/false,
+  errMsg:'',
+}
+ 
+停止录音
+eryu://jump#{type:"stopRecord",callBack:"stopRecord"} // 需要回调函数 回调的参数是
+{
+  file:{
+    filePath:''
+  } 
+}
+
+// 播放录音
+eryu://jump#{type:"playRecord",filePath:"",callBack:"playRecord"} //需要回调
+{
+  success:true/false,
+  errMsg:''
+}
+// 
+录音结束后
+
+app端调用js方法是
+ try{window.eryuEmit.$emit('emitName',params={})}catch(e){} 
+
+ 其中emitName 是触发的方法名称；
+ params 是参数

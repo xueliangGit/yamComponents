@@ -2,7 +2,7 @@
  * @Author: xuxueliang
  * @Date: 2019-06-20 03:18:16
  * @LastEditors: xuxueliang
- * @LastEditTime: 2020-02-26 16:13:41
+ * @LastEditTime: 2020-03-06 18:04:52
  -->
 <!DOCTYPE html>
 <html lang="en">
@@ -10,8 +10,9 @@
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0,max-scale=1.0"
+      content="width=device-width, initial-scale=1,minimum-scale=1.0, maximum-scale=1,user-scalable=no"
     />
+
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>BC-DEMO</title>
     <style>
@@ -21,8 +22,12 @@
         display: block;
       }
     </style>
+    <script>
+      window.startTmap = Date.now()
+    </script>
   </head>
   <body>
+    <app-yamjs></app-yamjs>
     <switch-tab tabs="a,b"></switch-tab>
     <my-home></my-home>
     <multi-upimg
@@ -42,6 +47,6 @@
         console.log('uploadok', obj, keys)
       }
     </script>
-    <script src="http://127.0.0.1:5006/test/2018-9-7/app/dist/yam.componet.min.js"></script>
+    <!-- <script src="http://127.0.0.1:5006/test/2018-9-7/app/dist/yam.componet.min.js"></script> -->
   </body>
 </html>

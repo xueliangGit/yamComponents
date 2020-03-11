@@ -1,0 +1,13 @@
+yarn run v1.13.0
+$ npm run start
+
+> yam-components@0.1.1 start /Users/xuxueliang/mywork/test/UI/yamjs-Component/yamComponents
+> webpack-dev-server --open --config build/webpack.dev.js
+
+-----------
+没有 svnConf.js 文件，svn配置将使用默认配置
+-----------
+[34mℹ[39m [90m｢wds｣[39m: Project is running at http://0.0.0.0:8080/
+[34mℹ[39m [90m｢wds｣[39m: webpack output is served from /
+[34mℹ[39m [90m｢wds｣[39m: Content not from webpack is served from ./dist
+[34mℹ[39m [90m｢wds｣[39m: 404s will fallback to /index.html

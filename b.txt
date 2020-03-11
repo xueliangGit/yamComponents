@@ -1,0 +1,864 @@
+yarn run v1.13.0
+$ node build/build.js
+-----------
+没有 svnConf.js 文件，svn配置将使用默认配置
+-----------
+stylePaths========================== 
+[ { flag: '\'',
+    text: './components/animation.styl',
+    afterFix: '.styl\'',
+    i: -1 } ]
+/*
+ * @Author: xuxueliang
+ * @Date: 2019-06-20 03:18:16
+ * @LastEditors: xuxueliang
+ * @LastEditTime: 2020-03-07 11:55:13
+ */
+// import './components/home/home'
+// // 记载框架默认的组件
+// import './components/timer/myTimer'
+// import './components/animation.styl'
+// import './components/upfile/upimg'
+// import './components/multiUpImg/index'
+// import './components/switchTab/index'
+import './app'
+
+stylePaths========================== 
+[ { flag: '\'',
+    text: '@lib/common/stylus/index.styl',
+    afterFix: '.styl\'',
+    i: -1 } ]
+/*
+ * @Author: xuxueliang
+ * @Date: 2020-03-06 16:06:20
+ * @LastEditors: xuxueliang
+ * @LastEditTime: 2020-03-07 21:12:38
+ */
+import './indexPage/'
+require('@lib/common/stylus/index.styl')
+require('@lib/common/config/flexible.js')
+
+stylePaths========================== mini-css-extract-plugin/dist/loader.js!/Users/xuxueliang/mywork/test/UI/yamjs-Component/yamComponents/yamloader/style?{"id":"com-app-yamjs"}!
+[ { flag: '\'',
+    text: './index.stylus',
+    afterFix: '.stylus\'',
+    i: -1 } ]
+/*
+ * @Author: xuxueliang
+ * @Date: 2020-03-06 16:06:51
+ * @LastEditors: xuxueliang
+ * @LastEditTime: 2020-03-07 16:56:55
+ */
+import Yam, { Component } from 'yamjs'
+import Item from './item/item'
+import { initHttp } from '@api'
+
+@Component({
+  tagName: 'app-yamjs',
+  style: [require('mini-css-extract-plugin/dist/loader.js!/Users/xuxueliang/mywork/test/UI/yamjs-Component/yamComponents/yamloader/style?{"id":"com-app-yamjs"}!./index.stylus')],
+  props: []
+})
+class App extends Yam {
+  $data () {
+    return {
+      // your data
+
+    }
+  }
+  $created () {
+    initHttp().then()
+  }
+  $mounted () {
+    console.log('渲染完毕', Date.now() - window.startTmap)
+  }
+  render () {
+    return <div id className="all-bk">
+      <div className="body">
+        <div className="top pos-r ">
+          <div className="times pos-a">活动时间：3.16-3.22</div>
+          <div className="pos-a user">
+            <div className="user-inner">
+              <div className="user-tx hg pos-r">
+                <img
+                  className="user-tx-img"
+                  src="http://pbs.myhug.cn/npic/w/9/20200107161241_bd1633f3e2bd10db933f63fe41622078"
+                  alt=""
+                />
+                <img
+                  className="user-shouhu pos-a"
+                  src="http://pws.myhug.cn/npic/w/9/20200305114628_057a14cf4fc994b79149135f0c8b9be4"
+                  alt=""
+                />
+              </div>
+              <div className="user-info">
+                <div className="name fh">可爱的小卡爱爱爱</div>
+                <div className="ID">ID:15348975</div>
+                <div className="button" onClick={ this.enter }>进入直播</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="rule bkone">
+          <div className="title"></div>
+          <div className="rule-inner">
+            <p>1.每周主播音符排行榜第一名获得7天直 播间周星头像框奖励</p>
+            <p>2.为周星送出礼物钻石最多的用户可获得7天直播间富甲一方铭牌奖励</p>
+            <p>3.此活动送礼、收礼只限直播间内</p>
+            <p>4.收到/送出礼物价值相同时，榜单按照时间先后顺序排序</p>
+            <p>5.计数周期为每周一0时—周日24时</p>
+            <p>6.奖励将会在活动结束后的5个工作日内发放；</p>
+          </div>
+        </div>
+        <div className="bkone rule">
+          <div className="title small"></div>
+          <div className="list">
+            <Item no="1" />
+            <Item no="2" />
+            <Item no="10" />
+          </div>
+        </div>
+      </div>
+    </div >
+  }
+}
+export default App
+
+stylePaths========================== 
+[]
+/* eslint-disable */
+(function (win, lib) {
+  var doc = win.document
+  var docEl = doc.documentElement
+  var metaEl = doc.querySelector('meta[name="viewport"]')
+  var flexibleEl = doc.querySelector('meta[name="flexible"]')
+  var dpr = 0
+  var scale = 0
+  var tid
+  var flexible = lib.flexible || (lib.flexible = {})
+  var maxView = 0;
+  if (metaEl) {
+    // console.warn('将根据已有的meta标签来设置缩放比例');
+    var match = metaEl.getAttribute('content').match(/initial\-scale=([\d\.]+)/)
+    /**
+     * 修正 大屏显示突兀问题
+     * 添加maxView属性  只需在meta[name="viewport"] 的content内添加max-view 值；最大屏幕适配尺寸
+     */
+    var max_view = metaEl.getAttribute('content').match(/max\-view=([\d\.]+)/)
+    if (match) {
+      scale = parseFloat(match[1])
+      dpr = parseInt(1 / scale)
+    }
+    if (max_view) {
+      maxView = max_view[1]
+    }
+  } else if (flexibleEl) {
+    var content = flexibleEl.getAttribute('content')
+    if (content) {
+      var initialDpr = content.match(/initial\-dpr=([\d\.]+)/)
+      var maximumDpr = content.match(/maximum\-dpr=([\d\.]+)/)
+      if (initialDpr) {
+        dpr = parseFloat(initialDpr[1])
+        scale = parseFloat((1 / dpr).toFixed(2))
+      }
+      if (maximumDpr) {
+        dpr = parseFloat(maximumDpr[1])
+        scale = parseFloat((1 / dpr).toFixed(2))
+      }
+    }
+  }
+
+  if (!dpr && !scale) {
+    // var isAndroid = win.navigator.appVersion.match(/android/gi)
+    var isIPhone = win.navigator.appVersion.match(/iphone/gi)
+    var devicePixelRatio = win.devicePixelRatio
+    if (isIPhone) {
+      // iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
+      if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {
+        dpr = 3
+      } else if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)) {
+        dpr = 2
+      } else {
+        dpr = 1
+      }
+    } else {
+      // 其他设备下，仍旧使用1倍的方案
+      dpr = 1
+    }
+    scale = 1 / dpr
+  }
+
+  docEl.setAttribute('data-dpr', dpr)
+  if (!metaEl) {
+    metaEl = doc.createElement('meta')
+    metaEl.setAttribute('name', 'viewport')
+    metaEl.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no')
+    if (docEl.firstElementChild) {
+      docEl.firstElementChild.appendChild(metaEl)
+    } else {
+      var wrap = doc.createElement('div')
+      wrap.appendChild(metaEl)
+      doc.write(wrap.innerHTML)
+    }
+  }
+
+  function refreshRem () {
+    var width = docEl.getBoundingClientRect().width
+    var maxWidth = width
+    /**
+     * 修正 大屏显示突兀问题
+     * 添加maxView属性 
+     */
+    if (maxView) {
+      maxWidth = width > maxView ? maxView : width;
+    } else {
+      console.log('refreshRem---', width, dpr, width / dpr, maxView)
+      if (width / dpr > 768) {
+        maxWidth = 768 * dpr
+      }
+    }
+    var rem = maxWidth / 10
+    docEl.style.fontSize = rem + 'px'
+    flexible.rem = win.rem = rem
+  }
+
+  win.addEventListener('resize', function () {
+    clearTimeout(tid)
+    tid = setTimeout(refreshRem, 300)
+  }, false)
+  win.addEventListener('pageshow', function (e) {
+    if (e.persisted) {
+      clearTimeout(tid)
+      tid = setTimeout(refreshRem, 300)
+    }
+  }, false)
+  if (doc.body) {
+    doc.body.style.fontSize = 12 * dpr + 'px'
+  }
+  if (doc.readyState === 'complete') {
+    doc.body.style.fontSize = 12 * dpr + 'px'
+  } else {
+    doc.addEventListener('DOMContentLoaded', function (e) {
+      doc.body.style.fontSize = 12 * dpr + 'px'
+    }, false)
+  }
+
+  refreshRem()
+
+  flexible.dpr = win.dpr = dpr
+  flexible.refreshRem = refreshRem
+  flexible.rem2px = function (d) {
+    var val = parseFloat(d) * this.rem
+    if (typeof d === 'string' && d.match(/rem$/)) {
+      val += 'px'
+    }
+    return val
+  }
+  flexible.px2rem = function (d) {
+    var val = parseFloat(d) / this.rem
+    if (typeof d === 'string' && d.match(/px$/)) {
+      val += 'rem'
+    }
+    return val
+  }
+})(window, window['lib'] || (window['lib'] = {}))
+
+stylePaths========================== /Users/xuxueliang/mywork/test/UI/yamjs-Component/yamComponents/yamloader/style?{"id":"com-app-item"}!
+[ { flag: '\'',
+    text: './item.stylus',
+    afterFix: '.stylus\'',
+    i: -1 } ]
+/*
+ * @Author: xuxueliang
+ * @Date: 2020-03-06 16:31:19
+ * @LastEditors: xuxueliang
+ * @LastEditTime: 2020-03-07 20:10:43
+ */
+import Yam, { Component } from 'yamjs'
+window.onerror = (v) => {
+  console.log(v)
+}
+let stylus = require('/Users/xuxueliang/mywork/test/UI/yamjs-Component/yamComponents/yamloader/style?{"id":"com-app-item"}!./item.stylus')
+@Component({
+  tagName: 'app-item',
+  style: [stylus],
+  shadow: true,
+  props: ['no']
+})
+class App extends Yam {
+  $data () {
+    return {
+      // your data
+    }
+  }
+  getStagClass () {
+
+  }
+  getGradeClass () {
+
+  }
+  render () {
+    return <div className={ ['list-item', this.no === 1 ? 'first-item' : 'normal-item'] }>
+      <div className={ ['flag_' + this.no, 'biao'] } >{ this.no }</div>
+      <div className={ [this.no === 1 ? 'first first-sh' : 'normal'] }>
+        <div className="item_1 item-item">
+          <div className={ [this.no === 1 && 'hg', 'tx'] }>
+            <img
+              src="http://pbs.myhug.cn/npic/w/9/20200107161241_bd1633f3e2bd10db933f63fe41622078"
+              alt=""
+            />
+          </div>
+          <span className="name fh">林小林的守林小林的守</span>
+          <span className="flag">
+            <span className={ this.getStagClass('2') }></span>
+            <span className={ this.getGradeClass(80) }>50</span>
+          </span >
+          <div className="earn">收到音符：21424</div>
+        </div >
+        <div className="item_2 item-item">
+          <div className={ [this.no === 1 && 'hg', 'tx'] }>
+            <img
+              src="http://pbs.myhug.cn/npic/w/9/20200107161241_bd1633f3e2bd10db933f63fe41622078"
+              alt=""
+            />
+          </div>
+          <span className="name fh">林小林的守林小林的守</span>
+          <span className="flag">
+            <span className={ this.getStagClass('2') }></span>
+            <span className={ this.getGradeClass(80) }>50</span>
+          </span >
+          <div className="earn">送出钻石：21424</div>
+        </div >
+      </div >
+    </div >
+  }
+}
+export default App
+
+stylePaths========================== 
+[]
+/*
+ * @Author: xuxueliang
+ * @Date: 2020-03-06 19:32:30
+ * @LastEditors: xuxueliang
+ * @LastEditTime: 2020-03-06 19:35:35
+ */
+import basePost from './http'
+// import domains from './domains'
+/* eslint-disable */
+export const initHttp = (param = {}) => basePost('/sys/init', param)
+export const assetsUrl = 'http://pws.myhug.cn'
+export const isDev = process.env.NODE_ENV === 'development'
+export const ERR_OK = 200
+stylePaths========================== 
+[]
+/*
+ * @Author: xuxueliang
+ * @Date: 2020-03-06 19:32:30
+ * @LastEditors: xuxueliang
+ * @LastEditTime: 2020-03-06 19:34:56
+ */
+import axios from 'axios'
+import qs from 'qs'
+import getApiSig from '@lib/siger'
+import Toast from '@lib/plugins/Sloth/Toast/'
+// import { Indicator, Toast } from 'mint-ui' 没有试用mintUi
+// import 'mint-ui/lib/style.css'
+import Yam from 'yamjs'
+Yam.prototype.$ajax = axios
+axios.defaults.timeout = 10000
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
+
+axios.interceptors.request.use((config) => {
+  if (config.method === 'post') {
+    config.data = config.data || {}
+    config.data.ts = parseInt((+new Date()) / 1000)
+    config.data.sig = getApiSig(config.data || {})
+    config.data = qs.stringify(config.data)
+  }
+  return config
+}, (error) => {
+  // Toast({
+  //   message: '加载超时',
+  //   position: 'middle',
+  //   duration: 3000
+  // })
+  Toast.showShortCenter('加载超时', '', 3000)
+  return Promise.reject(error)
+})
+
+axios.interceptors.response.use((res) => {
+  // Indicator.close()
+  return res.data
+}, (error) => {
+  console.log('好多人在访问呀，请重新试试[timeout]')
+  // Indicator.close()
+  if (error) {
+    let errortime = null
+    clearTimeout(errortime)
+    errortime = setTimeout(() => {
+      // Toast({
+      //   message: error.message,
+      //   position: 'middle',
+      //   duration: 2000
+      // })
+      Toast.showShortCenter(error.message, '', 2000)
+      clearTimeout(errortime)
+    }, 0)
+  }
+  return Promise.reject(error)
+})
+const basePost = (api, param = {}) => {
+  if (param.__ISTEST__) {
+    // 参数中有 __ISTEST__ 属性即是 打算走测试接口；当是开发环境时 或者 浏览器地址含有 __ISTEST__ 属性时； 走测试接口
+    if (process.env.NODE_ENV === 'development' || window.location.href.indexOf('__ISTEST__') > -1) {
+      api = 'http://192.168.2.154:2521/getApi?domain=ey&api=' + api
+    }
+    delete param.__ISTEST__
+  }
+  return axios.post(api, param)
+}
+export default basePost
+
+stylePaths========================== 
+[]
+/*
+ * @Author: xuxueliang
+ * @Date: 2018-12-18 12:26:30
+ * @LastEditors  : xuxueliang
+ * @LastEditTime : 2019-12-31 18:54:37
+ */
+import md5 from './md5'
+let API_SIG_VERSION = '2'
+let API_SIG_SUFIX = '!2a9491a2d9'
+const getApiSig = (data, posStr = 'after') => {
+  const sortedData = {}
+  Object.keys(data).sort().forEach(key => {
+    if (data[key] !== undefined) {
+      sortedData[key] = data[key]
+    }
+  })
+  let strData = ''
+  Object.keys(sortedData).forEach(key => {
+    strData += `${ key }=${ sortedData[key] }`
+  })
+  if (posStr === 'before') {
+    strData = API_SIG_SUFIX + strData
+  } else {
+    strData += API_SIG_SUFIX
+  }
+  return API_SIG_VERSION + md5(strData)
+}
+export default getApiSig
+/**
+ * @description: 设置签名的 属性
+ * @param {API_SIG_VERSION:'',API_SIG_SUFIX:''}
+ * @return:
+ */
+export const setSigerConfig = (data = {}) => {
+  API_SIG_VERSION = data['API_SIG_VERSION'] || API_SIG_VERSION
+  API_SIG_SUFIX = data['API_SIG_SUFIX'] || API_SIG_SUFIX
+}
+
+stylePaths========================== 
+[]
+export default (function (win, doc) {
+  var code1 = '<div  style="max-width:250px;line-height: 22px;transition:opacity 0.2s  ease,bottom 0.4s cubic-bezier(0.65, 0.5, 0.55, 1.3),top 0.4s  cubic-bezier(0.65, 0.5, 0.55, 1.3);bottom:0;top:0;position:fixed;background:#000;color:#fff;padding:10px 20px;background:rgba(0,0,0,.8);border-radius:5px;-webkit-transition::opacity 0.2s  ease,bottom 0.4s cubic-bezier(0.65, 0.5, 0.55, 1.3),top 0.4s  cubic-bezier(0.65, 0.5, 0.55, 1.3);font-size:14px;text-align:center;z-index:1000000;opacity:0;visibility:hidden;box-sizing:content-box;">'
+  var code2 = '</div>'
+  function Toast () {
+    this.author = 'SlothSilence:xuxueliang'
+    this.body = doc.getElementsByTagName('body')[0]
+    console.log('Toast：运行正常')
+  }
+  function getStyle (obj, styles) {
+    return parseInt(obj.currentStyle ? obj.currentStyle : win.getComputedStyle(obj, null)[styles])
+  }
+  Toast.prototype = {
+    show: function (val, vertical, type, duration) { // type:success warn error
+      var str = code1 + val + code2
+      var _ = this
+      var time = null
+      var d = doc.createElement('div')
+      duration = duration || 1000
+      d.innerHTML = str
+      _.body = _.body ? _.body : doc.getElementsByTagName('body')[0]
+      _.body.appendChild(d)
+      var div = d.getElementsByTagName('div')[0]
+      var width_ = getStyle(div, 'width') + 40
+      div.style.marginLeft = -width_ / 2 + 'px'
+      div.style.left = '50%'
+      switch (type) {
+        case 'success':
+          div.style.background = 'green'
+          break
+        case 'warn':
+          div.style.background = 'orange'
+          break
+        case 'error':
+          div.style.background = 'red'
+          break
+      }
+      if (vertical === 'bottom') {
+        div.style.bottom = '50px'
+        div.style.top = 'auto'
+      } else if (vertical === 'top') {
+        div.style.bottom = 'auto'
+        div.style.top = '50px'
+      } else {
+        div.style.bottom = 'auto'
+        div.style.top = '50%'
+        d.style.position = 'fixed'
+        d.style.top = '45%'
+        d.style.marginTop = '-36px'
+        div.style.position = 'static'
+        div.style.margin = '0 auto'
+        d.style.marginLeft = -width_ / 2 + 'px'
+        d.style.left = '50%'
+        d.style.zIndex = 100
+      }
+      div.style.opacity = 1
+      div.style.visibility = 'visible'
+      time = setTimeout(function () {
+        if (time) {
+          time = null
+          div.style.opacity = 0
+          setTimeout(function () {
+            _.body.removeChild(d)
+          }, 1000)
+        }
+      }, duration)
+      div.onclick = function () {
+        if (time) {
+          clearTimeout(time)
+          time = null
+          div.style.opacity = 0
+          setTimeout(function () {
+            _.body.removeChild(d)
+          }, 1000)
+        }
+      }
+    },
+    showShortBottom: function (val, type, duration) {
+      this.show(val, 'bottom', type, duration)
+    },
+    showShortTop: function (val, type, duration) {
+      this.show(val, 'top', type, duration)
+    },
+    showShortCenter: function (val, type, duration) {
+      this.show(val, null, type, duration)
+    },
+    bottom: function (val, type, duration) {
+      this.show(val, 'bottom', type, duration)
+    },
+    center: function (val, type, duration) {
+      this.show(val, null, type, duration)
+    },
+    top: function (val, type, duration) {
+      this.show(val, 'top', type, duration)
+    }
+  }
+  return new Toast()
+})(window, document)
+
+stylePaths========================== 
+[]
+/*
+ * JavaScript MD5
+ * https://github.com/blueimp/JavaScript-MD5
+ *
+ * Copyright 2011, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * https://opensource.org/licenses/MIT
+ *
+ * Based on
+ * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message
+ * Digest Algorithm, as defined in RFC 1321.
+ * Version 2.2 Copyright (C) Paul Johnston 1999 - 2009
+ * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
+ * Distributed under the BSD License
+ * See http://pajhome.org.uk/crypt/md5 for more info.
+ */
+
+/* global define */
+; (function ($) {
+  'use strict'
+
+  /*
+  * Add integers, wrapping at 2^32. This uses 16-bit operations internally
+  * to work around bugs in some JS interpreters.
+  */
+  function safeAdd (x, y) {
+    var lsw = (x & 0xffff) + (y & 0xffff)
+    var msw = (x >> 16) + (y >> 16) + (lsw >> 16)
+    return (msw << 16) | (lsw & 0xffff)
+  }
+
+  /*
+  * Bitwise rotate a 32-bit number to the left.
+  */
+  function bitRotateLeft (num, cnt) {
+    return (num << cnt) | (num >>> (32 - cnt))
+  }
+
+  /*
+  * These functions implement the four basic operations the algorithm uses.
+  */
+  function md5cmn (q, a, b, x, s, t) {
+    return safeAdd(bitRotateLeft(safeAdd(safeAdd(a, q), safeAdd(x, t)), s), b)
+  }
+  function md5ff (a, b, c, d, x, s, t) {
+    return md5cmn((b & c) | (~b & d), a, b, x, s, t)
+  }
+  function md5gg (a, b, c, d, x, s, t) {
+    return md5cmn((b & d) | (c & ~d), a, b, x, s, t)
+  }
+  function md5hh (a, b, c, d, x, s, t) {
+    return md5cmn(b ^ c ^ d, a, b, x, s, t)
+  }
+  function md5ii (a, b, c, d, x, s, t) {
+    return md5cmn(c ^ (b | ~d), a, b, x, s, t)
+  }
+
+  /*
+  * Calculate the MD5 of an array of little-endian words, and a bit length.
+  */
+  function binlMD5 (x, len) {
+    /* append padding */
+    x[len >> 5] |= 0x80 << (len % 32)
+    x[((len + 64) >>> 9 << 4) + 14] = len
+
+    var i
+    var olda
+    var oldb
+    var oldc
+    var oldd
+    var a = 1732584193
+    var b = -271733879
+    var c = -1732584194
+    var d = 271733878
+
+    for (i = 0; i < x.length; i += 16) {
+      olda = a
+      oldb = b
+      oldc = c
+      oldd = d
+
+      a = md5ff(a, b, c, d, x[i], 7, -680876936)
+      d = md5ff(d, a, b, c, x[i + 1], 12, -389564586)
+      c = md5ff(c, d, a, b, x[i + 2], 17, 606105819)
+      b = md5ff(b, c, d, a, x[i + 3], 22, -1044525330)
+      a = md5ff(a, b, c, d, x[i + 4], 7, -176418897)
+      d = md5ff(d, a, b, c, x[i + 5], 12, 1200080426)
+      c = md5ff(c, d, a, b, x[i + 6], 17, -1473231341)
+      b = md5ff(b, c, d, a, x[i + 7], 22, -45705983)
+      a = md5ff(a, b, c, d, x[i + 8], 7, 1770035416)
+      d = md5ff(d, a, b, c, x[i + 9], 12, -1958414417)
+      c = md5ff(c, d, a, b, x[i + 10], 17, -42063)
+      b = md5ff(b, c, d, a, x[i + 11], 22, -1990404162)
+      a = md5ff(a, b, c, d, x[i + 12], 7, 1804603682)
+      d = md5ff(d, a, b, c, x[i + 13], 12, -40341101)
+      c = md5ff(c, d, a, b, x[i + 14], 17, -1502002290)
+      b = md5ff(b, c, d, a, x[i + 15], 22, 1236535329)
+
+      a = md5gg(a, b, c, d, x[i + 1], 5, -165796510)
+      d = md5gg(d, a, b, c, x[i + 6], 9, -1069501632)
+      c = md5gg(c, d, a, b, x[i + 11], 14, 643717713)
+      b = md5gg(b, c, d, a, x[i], 20, -373897302)
+      a = md5gg(a, b, c, d, x[i + 5], 5, -701558691)
+      d = md5gg(d, a, b, c, x[i + 10], 9, 38016083)
+      c = md5gg(c, d, a, b, x[i + 15], 14, -660478335)
+      b = md5gg(b, c, d, a, x[i + 4], 20, -405537848)
+      a = md5gg(a, b, c, d, x[i + 9], 5, 568446438)
+      d = md5gg(d, a, b, c, x[i + 14], 9, -1019803690)
+      c = md5gg(c, d, a, b, x[i + 3], 14, -187363961)
+      b = md5gg(b, c, d, a, x[i + 8], 20, 1163531501)
+      a = md5gg(a, b, c, d, x[i + 13], 5, -1444681467)
+      d = md5gg(d, a, b, c, x[i + 2], 9, -51403784)
+      c = md5gg(c, d, a, b, x[i + 7], 14, 1735328473)
+      b = md5gg(b, c, d, a, x[i + 12], 20, -1926607734)
+
+      a = md5hh(a, b, c, d, x[i + 5], 4, -378558)
+      d = md5hh(d, a, b, c, x[i + 8], 11, -2022574463)
+      c = md5hh(c, d, a, b, x[i + 11], 16, 1839030562)
+      b = md5hh(b, c, d, a, x[i + 14], 23, -35309556)
+      a = md5hh(a, b, c, d, x[i + 1], 4, -1530992060)
+      d = md5hh(d, a, b, c, x[i + 4], 11, 1272893353)
+      c = md5hh(c, d, a, b, x[i + 7], 16, -155497632)
+      b = md5hh(b, c, d, a, x[i + 10], 23, -1094730640)
+      a = md5hh(a, b, c, d, x[i + 13], 4, 681279174)
+      d = md5hh(d, a, b, c, x[i], 11, -358537222)
+      c = md5hh(c, d, a, b, x[i + 3], 16, -722521979)
+      b = md5hh(b, c, d, a, x[i + 6], 23, 76029189)
+      a = md5hh(a, b, c, d, x[i + 9], 4, -640364487)
+      d = md5hh(d, a, b, c, x[i + 12], 11, -421815835)
+      c = md5hh(c, d, a, b, x[i + 15], 16, 530742520)
+      b = md5hh(b, c, d, a, x[i + 2], 23, -995338651)
+
+      a = md5ii(a, b, c, d, x[i], 6, -198630844)
+      d = md5ii(d, a, b, c, x[i + 7], 10, 1126891415)
+      c = md5ii(c, d, a, b, x[i + 14], 15, -1416354905)
+      b = md5ii(b, c, d, a, x[i + 5], 21, -57434055)
+      a = md5ii(a, b, c, d, x[i + 12], 6, 1700485571)
+      d = md5ii(d, a, b, c, x[i + 3], 10, -1894986606)
+      c = md5ii(c, d, a, b, x[i + 10], 15, -1051523)
+      b = md5ii(b, c, d, a, x[i + 1], 21, -2054922799)
+      a = md5ii(a, b, c, d, x[i + 8], 6, 1873313359)
+      d = md5ii(d, a, b, c, x[i + 15], 10, -30611744)
+      c = md5ii(c, d, a, b, x[i + 6], 15, -1560198380)
+      b = md5ii(b, c, d, a, x[i + 13], 21, 1309151649)
+      a = md5ii(a, b, c, d, x[i + 4], 6, -145523070)
+      d = md5ii(d, a, b, c, x[i + 11], 10, -1120210379)
+      c = md5ii(c, d, a, b, x[i + 2], 15, 718787259)
+      b = md5ii(b, c, d, a, x[i + 9], 21, -343485551)
+
+      a = safeAdd(a, olda)
+      b = safeAdd(b, oldb)
+      c = safeAdd(c, oldc)
+      d = safeAdd(d, oldd)
+    }
+    return [a, b, c, d]
+  }
+
+  /*
+  * Convert an array of little-endian words to a string
+  */
+  function binl2rstr (input) {
+    var i
+    var output = ''
+    var length32 = input.length * 32
+    for (i = 0; i < length32; i += 8) {
+      output += String.fromCharCode((input[i >> 5] >>> (i % 32)) & 0xff)
+    }
+    return output
+  }
+
+  /*
+  * Convert a raw string to an array of little-endian words
+  * Characters >255 have their high-byte silently ignored.
+  */
+  function rstr2binl (input) {
+    var i
+    var output = []
+    output[(input.length >> 2) - 1] = undefined
+    for (i = 0; i < output.length; i += 1) {
+      output[i] = 0
+    }
+    var length8 = input.length * 8
+    for (i = 0; i < length8; i += 8) {
+      output[i >> 5] |= (input.charCodeAt(i / 8) & 0xff) << (i % 32)
+    }
+    return output
+  }
+
+  /*
+  * Calculate the MD5 of a raw string
+  */
+  function rstrMD5 (s) {
+    return binl2rstr(binlMD5(rstr2binl(s), s.length * 8))
+  }
+
+  /*
+  * Calculate the HMAC-MD5, of a key and some data (raw strings)
+  */
+  function rstrHMACMD5 (key, data) {
+    var i
+    var bkey = rstr2binl(key)
+    var ipad = []
+    var opad = []
+    var hash
+    ipad[15] = opad[15] = undefined
+    if (bkey.length > 16) {
+      bkey = binlMD5(bkey, key.length * 8)
+    }
+    for (i = 0; i < 16; i += 1) {
+      ipad[i] = bkey[i] ^ 0x36363636
+      opad[i] = bkey[i] ^ 0x5c5c5c5c
+    }
+    hash = binlMD5(ipad.concat(rstr2binl(data)), 512 + data.length * 8)
+    return binl2rstr(binlMD5(opad.concat(hash), 512 + 128))
+  }
+
+  /*
+  * Convert a raw string to a hex string
+  */
+  function rstr2hex (input) {
+    var hexTab = '0123456789abcdef'
+    var output = ''
+    var x
+    var i
+    for (i = 0; i < input.length; i += 1) {
+      x = input.charCodeAt(i)
+      output += hexTab.charAt((x >>> 4) & 0x0f) + hexTab.charAt(x & 0x0f)
+    }
+    return output
+  }
+
+  /*
+  * Encode a string as utf-8
+  */
+  function str2rstrUTF8 (input) {
+    return unescape(encodeURIComponent(input))
+  }
+
+  /*
+  * Take string arguments and return either raw or hex encoded strings
+  */
+  function rawMD5 (s) {
+    return rstrMD5(str2rstrUTF8(s))
+  }
+  function hexMD5 (s) {
+    return rstr2hex(rawMD5(s))
+  }
+  function rawHMACMD5 (k, d) {
+    return rstrHMACMD5(str2rstrUTF8(k), str2rstrUTF8(d))
+  }
+  function hexHMACMD5 (k, d) {
+    return rstr2hex(rawHMACMD5(k, d))
+  }
+
+  function md5 (string, key, raw) {
+    if (!key) {
+      if (!raw) {
+        return hexMD5(string)
+      }
+      return rawMD5(string)
+    }
+    if (!raw) {
+      return hexHMACMD5(key, string)
+    }
+    return rawHMACMD5(key, string)
+  }
+
+  if (typeof define === 'function' && define.amd) {
+    define(function () {
+      return md5
+    })
+  } else if (typeof module === 'object' && module.exports) {
+    module.exports = md5
+  } else {
+    $.md5 = md5
+  }
+})(window)
+export default window.md5
+
+/Users/xuxueliang/mywork/test/UI/yamjs-Component/yamComponents/src/app/indexPage/item/item.stylus
+/Users/xuxueliang/mywork/test/UI/yamjs-Component/yamComponents/src/app/indexPage/index.stylus
+Hash: [1m3f55243588b1f07f9c58[39m[22m
+Version: webpack [1m4.41.5[39m[22m
+Time: [1m7180[39m[22mms
+Built at: 2020-03-07 [1m22:38:42[39m[22m
+                                       [1mAsset[39m[22m      [1mSize[39m[22m  [1mChunks[39m[22m  [1m[39m[22m                       [1m[39m[22m[1mChunk Names[39m[22m
+                                  [1m[32mindex.html[39m[22m   1.1 KiB        [1m[39m[22m  [1m[32m[emitted][39m[22m              
+    [1m[32mstatic/js/index.69d84f91eed2b09895fb.css[39m[22m  33.5 KiB       [1m0[39m[22m  [1m[32m[emitted] [immutable][39m[22m  index
+[1m[32mstatic/js/index.69d84f91eed2b09895fb.css.map[39m[22m  38.7 KiB        [1m[39m[22m  [1m[32m[emitted][39m[22m              
+     [1m[32mstatic/js/index.69d84f91eed2b09895fb.js[39m[22m  40.3 KiB       [1m0[39m[22m  [1m[32m[emitted] [immutable][39m[22m  index
+   [1m[32mstatic/js/vendors.b55134d928a5c273c51a.js[39m[22m  63.1 KiB       [1m1[39m[22m  [1m[32m[emitted] [immutable][39m[22m  vendors
+Entrypoint [1mindex[39m[22m = [1m[32mstatic/js/vendors.b55134d928a5c273c51a.js[39m[22m [1m[32mstatic/js/index.69d84f91eed2b09895fb.css[39m[22m [1m[32mstatic/js/index.69d84f91eed2b09895fb.js[39m[22m
+
+  Build complete.
+
+  Tip: built files are meant to be served over an HTTP server.
+  Opening index.html over file:// won't work.
+
+Done in 9.74s.

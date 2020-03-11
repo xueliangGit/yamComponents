@@ -73,17 +73,17 @@ class App extends Yam {
     return false
   }
   loading () {
-    return <div onClick={ (e) => { e.preventDefault() } } class='loading'>
+    return <div onClick={ (e) => { e.preventDefault() } } className='loading'>
       <div>{ this.loadingInfo }</div>
       <span />
     </div>
   }
   render () {
     // console.log(this.imgUrl)
-    return <div class={ `upfile ${ this.imgUrl ? '' : 'showbk' }` }>
+    return <div className={ `upfile ${ this.imgUrl ? '' : 'showbk' }` }>
       <label >
         <input type='file' onChange={ this.change.bind(this) } accept='image/*' />
-        { this.imgUrl ? <div class='showimg' style={ { backgroundImage: 'url(' + this.imgUrl + (this.suffix || '') + ')' } } /> : this.isLoading ? '' : <span>+</span> }
+        { this.imgUrl ? <div className='showimg' style={ { backgroundImage: 'url(' + this.imgUrl + (this.suffix || '') + ')' } } /> : this.isLoading ? '' : <span>+</span> }
         { this.isLoading ? this.loading() : '' }
       </label>
     </div >

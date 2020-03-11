@@ -1,3 +1,9 @@
+/*
+ * @Author: xuxueliang
+ * @Date: 2019-10-12 11:43:13
+ * @LastEditors: xuxueliang
+ * @LastEditTime: 2020-03-11 10:40:22
+ */
 // webpack.dev.js
 const merge = require('webpack-merge')
 const path = require('path')
@@ -24,9 +30,10 @@ const devWebpackConfig = merge(common, {
     inline: true, // 启用内联模式，一段处理实时重载的脚本被插入到bundle中，并且构建消息会出现在浏览器控制台
     quiet: true, // necessary for FriendlyErrorsPlugin
     historyApiFallback: true // 开发单页应用时有用，依赖于HTML5 history API，设为true时所有跳转将指向index.html
+    // hotOnly: true
   },
   plugins: [
-    new CleanWebpackPlugin(),  
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html'
@@ -62,7 +69,7 @@ module.exports = new Promise((resolve, reject) => {
       // Add FriendlyErrorsPlugin
       devWebpackConfig.plugins.push(new FriendlyErrorsPlugin({
         compilationSuccessInfo: {
-          messages: [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`]
+          messages: [`Your application is running here: http://${ devWebpackConfig.devServer.host }:${ port }`]
         },
         onErrors: config.dev.notifyOnErrors
           ? utils.createNotifierCallback()

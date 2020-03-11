@@ -1,0 +1,72 @@
+@import "variable.styl"
+
+body, html
+  line-height: 1.2
+  font-family: 'PingFang SC', 'STHeitiSC-Light', 'Helvetica-Light', arial, sans-serif, 'Droid Sans Fallback'
+  user-select: none
+  -webkit-tap-highlight-color: transparent
+  background: $color-background
+  color: $color-text
+  
+.none { display: none; }
+.hide { visibility: hidden; }
+.clear:after{ content: "\20"; height: 0; display: block; clear: both;}
+.fl{ float: left;}
+.fr{ float: right;}
+/*块元素居中*/
+.mc{ margin-left: auto; margin-right: auto;}
+/*垂直居中*/
+.vm{ vertical-align: middle;}
+/*文本对齐方式*/
+.tc{ text-align: center;}
+.tl{ text-align: left;}
+.tr{ text-align: right;}
+.fb{ font-weight: bold;}
+.fn{ font-weight: normal;}
+.fh{ overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+/* 超过两行省略号 */
+.fh2{
+  overflow:hidden; 
+  text-overflow:ellipsis;
+  display:-webkit-box; 
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2; 
+}
+/* 超过三行省略号 */
+.fh3{
+  overflow:hidden; 
+  text-overflow:ellipsis;
+  display:-webkit-box; 
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:3; 
+}
+// 定位元素
+.pos-r
+  position relative
+.pos-a
+  position absolute
+.pos-f
+  position fixed
+.of
+  overflow hidden
+// ::-webkit-scrollbar{ opacity: 0;}
+.bsbb
+  box-sizing: border-box
+.flex
+  display: flex
+.flex-middle
+  align-items: center
+.flex-center
+  align-items: center
+  justify-content: center
+  display: flex
+.flex-item
+  flex: 1
+.flex-column{
+  flex-direction: column;
+}
+.info-p{
+  color rgba(255,255,255,0.8)
+  opacity 0.8
+  text-align: center
+}

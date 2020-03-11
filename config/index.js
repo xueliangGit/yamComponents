@@ -2,7 +2,7 @@
  * @Author: xuxueliang
  * @Date: 2019-10-12 11:43:13
  * @LastEditors: xuxueliang
- * @LastEditTime: 2019-10-12 11:43:13
+ * @LastEditTime: 2020-03-08 00:01:02
  */
 'use strict'
 // Template version: 1.3.1
@@ -78,7 +78,7 @@ module.exports = {
      * Source Maps
      */
 
-    productionSourceMap: true,
+    productionSourceMap: false,
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',
 
