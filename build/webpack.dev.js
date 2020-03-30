@@ -2,7 +2,7 @@
  * @Author: xuxueliang
  * @Date: 2019-10-12 11:43:13
  * @LastEditors: xuxueliang
- * @LastEditTime: 2020-03-11 10:40:22
+ * @LastEditTime: 2020-03-13 14:07:37
  */
 // webpack.dev.js
 const merge = require('webpack-merge')
@@ -26,6 +26,7 @@ const devWebpackConfig = merge(common, {
     host: '0.0.0.0', // 指定使用一个host，可用ip地址访问，没有的话如果别人访问会被禁止。默认localhost。
     port: '8080', // 指定端口号，如省略，默认为”8080“
     disableHostCheck: true,
+    proxy: config.dev.proxyTable,
     hot: true, // 启用模块热替换特性
     inline: true, // 启用内联模式，一段处理实时重载的脚本被插入到bundle中，并且构建消息会出现在浏览器控制台
     quiet: true, // necessary for FriendlyErrorsPlugin

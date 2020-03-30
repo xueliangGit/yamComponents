@@ -2,7 +2,7 @@
  * @Author: xuxueliang
  * @Date: 2019-06-20 03:18:16
  * @LastEditors: xuxueliang
- * @LastEditTime: 2020-03-08 00:28:39
+ * @LastEditTime: 2020-03-29 20:05:12
  */
 // webpack.prod.js
 const merge = require('webpack-merge')
@@ -46,14 +46,14 @@ module.exports = merge(common, {
       parallel: true
     }),
     // extract css into its own file
-    new ExtractTextPlugin({
-      filename: utils.assetsPath('css/[name].[contenthash].css'),
-      // Setting the following option to `false` will not extract CSS from codesplit chunks.
-      // Their CSS will instead be inserted dynamically with style-loader when the codesplit chunk has been loaded by webpack.
-      // It's currently set to `true` because we are seeing that sourcemaps are included in the codesplit bundle as well when it's `false`,
-      // increasing file size: https://github.com/vuejs-templates/webpack/issues/1110
-      allChunks: true
-    }),
+    // new ExtractTextPlugin({
+    //   filename: utils.assetsPath('css/[name].[md5:contenthash].css'),
+    //   // Setting the following option to `false` will not extract CSS from codesplit chunks.
+    //   // Their CSS will instead be inserted dynamically with style-loader when the codesplit chunk has been loaded by webpack.
+    //   // It's currently set to `true` because we are seeing that sourcemaps are included in the codesplit bundle as well when it's `false`,
+    //   // increasing file size: https://github.com/vuejs-templates/webpack/issues/1110
+    //   allChunks: true
+    // }),
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
     new OptimizeCSSPlugin({
@@ -79,7 +79,7 @@ module.exports = merge(common, {
       chunksSortMode: 'dependency'
     }),
     new MiniCssExtractPlugin({
-      filename: utils.assetsPath('js/[name].[chunkhash].css'),
+      filename: utils.assetsPath('css/[name].[chunkhash].css'),
     }),
     new webpack.BannerPlugin(
       {
@@ -117,7 +117,7 @@ build with YAM-CLI - v${package.version }`, // 要输出的注释内容
         app: {
           name: 'app',
           chunks: 'initial',
-          minChunks: 2
+          minChunks: 3
         }
       }
     }

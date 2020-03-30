@@ -1,10 +1,10 @@
   .container
-  height 200px
-  overflow auto
-  position relative
-  text-align center
-  margin-right: -15px;
-  margin-left: -15px;
+    height 200px
+    overflow auto
+    position relative
+    text-align center
+    margin-right: -15px;
+    margin-left: -15px;
   .scroller
     padding-top: 80px;
     line-height 40px

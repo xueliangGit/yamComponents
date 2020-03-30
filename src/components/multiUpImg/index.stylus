@@ -1,9 +1,10 @@
-[scope]
-  // display flex
+[config]{
+  scope:true
+}
 .img-show
   background-position center;
   vertical-align: top;
-  background-repeat no-repeat
+  background-repeat: no-repeat
   background-size cover
   display inline-block
   border-radius: 5px;

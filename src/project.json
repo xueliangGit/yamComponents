@@ -1,0 +1,12 @@
+{
+  "type": "act",
+  "name": "weekStar",
+  "author": "xueliang",
+  "testSubPath": "http://svn.i.myhug.cn:88/svn/baobao/static/ey/wap/web/h5Test/h5eyApp/weekStar",
+  "subPath": "http://svn.i.myhug.cn:88/svn/baobao/static/ey/wap/web/h5eyApp/weekStar",
+  "ways": "svn",
+  "proxyTableUrl": "https://ey.myhug.cn",
+  "rootValue": 750,
+  "VERSION": "v-0.0.1",
+  "noJs": []
+}

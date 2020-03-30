@@ -106,7 +106,8 @@
     "postcss-simple-vars": "^5.0.2",
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-url": "^3.0.1",
-    "yamjs": "^0.4.1"
+    "yamjs": "^0.5.0",
+    "yamjs-loader": "^1.0.0"
   },
   "engines": {
     "node": ">= 6.0.0",

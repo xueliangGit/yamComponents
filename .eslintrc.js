@@ -2,7 +2,7 @@
  * @Author: xuxueliang
  * @Date: 2019-10-12 11:43:13
  * @LastEditors: xuxueliang
- * @LastEditTime: 2020-03-08 00:00:05
+ * @LastEditTime: 2020-03-12 19:10:59
  */
 // https://eslint.org/docs/user-guide/configuring
 
@@ -34,6 +34,7 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     // 'vue/no-parsing-error': [2, { 'x-invalid-end-tag': false }],
     "space-before-function-paren": ["error", "always"],
+    'react/no-string-refs': 'off'
     // "react/jsx-uses-vars": "error"
   }, "settings": {
     "react": {

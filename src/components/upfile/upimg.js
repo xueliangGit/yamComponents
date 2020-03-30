@@ -2,7 +2,7 @@
  * @Author: xuxueliang
  * @Date: 2019-08-16 17:53:23
  * @LastEditors: xuxueliang
- * @LastEditTime: 2020-02-19 14:54:58
+ * @LastEditTime: 2020-03-29 21:16:04
  */
 import Yam, { Component } from 'yamjs'
 import style from './upimg1.stylus'

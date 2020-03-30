@@ -2,7 +2,7 @@
  * @Author: xuxueliang
  * @Date: 2019-06-20 03:18:16
  * @LastEditors: xuxueliang
- * @LastEditTime: 2019-09-02 19:12:35
+ * @LastEditTime: 2020-03-12 19:11:33
  */
 import Yam, { Component } from 'yamjs'
 import reactAdapter from 'yamjs/dist/plugins/reactAdapter'
@@ -116,19 +116,17 @@ class WheelView extends Yam {
   }
 
   render () {
-    return (<div className='container'
-      ref='scroller'
-      onScroll={ this.onScroll.bind(this) }
-      onClick={ this.handleClick.bind(this) }>
-      <div className='scroller'>
-        {
-          Array.isArray(this.data) ? this.data.map((item, i) => {
-            // 循环把数据显示出来
-            return <div className={ this.index === i ? 'active item' : 'item' }>{ item } { this.index === i ? this.gzName || '' : '' }</div>
-          }) : ''
-        }
+    return (
+      <div className='container' ref='scroller' onScroll={ this.onScroll.bind(this) } onClick={ this.handleClick.bind(this) }>
+        <div className='scroller'>
+          {
+            Array.isArray(this.data) ? this.data.map((item, i) => {
+              // 循环把数据显示出来
+              return <div key={ i } className={ this.index === i ? 'active item' : 'item' }>{ item } { this.index === i ? this.gzName || '' : '' }</div>
+            }) : ''
+          }
+        </div>
       </div>
-    </div>
     )
   }
 }

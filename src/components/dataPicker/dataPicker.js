@@ -1,3 +1,9 @@
+/*
+ * @Author: xuxueliang
+ * @Date: 2019-10-12 11:43:13
+ * @LastEditors: xuxueliang
+ * @LastEditTime: 2020-03-12 19:12:12
+ */
 import Yam, { Component } from 'yamjs'
 // eslint-disable-next-line no-unused-vars
 import WheelView from '../wheelView/WheelView'
@@ -63,21 +69,21 @@ class datePicker extends Yam {
   }
   getWheel () {
     return this.listData.map((v, i) =>
-      <wheel-view className=' dib' style={{ 'width': 1 / this.listData.length * 100 + '%' }} type={'key' + i} data={v}
-        index={this.indexs[i]}
-        onDataChange={this.onDataChange.bind(this)} />
+      <wheel-view key={ i } className=' dib' style={ { 'width': 1 / this.listData.length * 100 + '%' } } type={ 'key' + i } data={ v }
+        index={ this.indexs[i] }
+        onDataChange={ this.onDataChange.bind(this) } />
     )
   }
   render () {
     return (
       <div className='dialog'>
         <div className='buttons'>
-          <span onClick={this.hide.bind(this)} className='button left'>取消</span>
-          <div className='title '>{this.showDate}</div>
-          <span onClick={this.dateSure.bind(this)} className='button right'>确定</span>
+          <span onClick={ this.hide.bind(this) } className='button left'>取消</span>
+          <div className='title '>{ this.showDate }</div>
+          <span onClick={ this.dateSure.bind(this) } className='button right'>确定</span>
         </div>
         <div className='box' >
-          {this.getWheel()}
+          { this.getWheel() }
         </div>
       </div>
     )

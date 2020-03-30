@@ -2,21 +2,13 @@
  * @Author: xuxueliang
  * @Date: 2019-10-12 11:43:13
  * @LastEditors: xuxueliang
- * @LastEditTime: 2020-03-08 00:01:02
+ * @LastEditTime: 2020-03-12 16:38:52
  */
 'use strict'
 // Template version: 1.3.1
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
-let svnConf = {}
-try {
-  svnConf = require('./svnConf.js')
-} catch (e) {
-  console.log('-----------')
-  console.log('没有 svnConf.js 文件，svn配置将使用默认配置')
-  console.log('-----------')
-}
 module.exports = {
   dev: {
 
