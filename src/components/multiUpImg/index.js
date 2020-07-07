@@ -2,7 +2,7 @@
  * @Author: xuxueliang
  * @Date: 2020-02-18 15:13:32
  * @LastEditors: xuxueliang
- * @LastEditTime: 2020-03-29 21:20:45
+ * @LastEditTime: 2020-06-22 17:19:41
  */
 import Yam, { Component } from 'yamjs'
 import img from './but-jubaozhaoshanchu@2x.png'
