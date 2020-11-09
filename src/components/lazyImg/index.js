@@ -2,9 +2,10 @@
  * @Author: xuxueliang
  * @Date: 2020-06-22 17:20:53
  * @LastEditors: xuxueliang
- * @LastEditTime: 2020-06-22 20:17:04
+ * @LastEditTime: 2020-10-21 11:43:07
  */
 import Yam, { Component } from 'yamjs'
+import Button from '../Button'
 @Component({
   tagName: 'lazy-img',
   style: '',
@@ -27,7 +28,6 @@ class App extends Yam {
     img.src = this.src
     img.onload = () => {
       this.isReady = true
-      console.log(this)
     }
     img.onerror = () => {
       if (!img._isTry) {
@@ -40,7 +40,10 @@ class App extends Yam {
     }
   }
   render () {
-    return <img aaaa={ this.isReady ? this.src : this.loadingsrc } src={ this.isReady ? this.src : this.loadingsrc } />
+    return <div>
+      <Button>我是按钮</Button>
+      <img aaaa={ this.isReady ? this.src : this.loadingsrc } src={ this.isReady ? this.src : this.loadingsrc } />
+    </div>
   }
 }
 export default App

@@ -1,0 +1,3 @@
+$uiprefix='bb'
+getTagRoot(name) 
+  '[com-'+$uiprefix+'-'+name+'-root]'

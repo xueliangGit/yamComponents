@@ -2,7 +2,7 @@
  * @Author: xuxueliang
  * @Date: 2019-06-20 03:18:16
  * @LastEditors: xuxueliang
- * @LastEditTime: 2020-06-22 17:21:04
+ * @LastEditTime: 2020-10-21 11:38:04
  */
 // import './components/home/home'
 // // 记载框架默认的组件
@@ -16,4 +16,4 @@ import './components/multiUpImg/index'
 // // 记载框架默认的组件
 // import './components/timer/myTimer'
 import './components/lazyImg/index'
-console.log('asd1')
+import './components/Button/index'

@@ -2,7 +2,7 @@
  * @Author: xuxueliang
  * @Date: 2020-02-18 15:13:32
  * @LastEditors: xuxueliang
- * @LastEditTime: 2020-06-22 17:19:41
+ * @LastEditTime: 2020-10-14 18:02:32
  */
 import Yam, { Component } from 'yamjs'
 import img from './but-jubaozhaoshanchu@2x.png'
@@ -41,7 +41,7 @@ class App extends Yam {
     }, 3000)
   }
   $beforeUpdate () {
-    console.log(this)
+    // console.log(this)
   }
   getAll () {
     return <div className='img-divs'>
@@ -54,12 +54,12 @@ class App extends Yam {
         </div>
       ))
       }
-      <Upimg selelctOnly={ true } className={ `img-show ${ this.imgs.length >= this.max ? 'hide' : '' }` } style={ { 'width': this.width + 'px', height: this.height + 'px' } } type={ this.type } suffix={ this.suffix } serverurl={ this.serverurl } uploadok={ this.uploadok.bind(this) } title="上传图片"></Upimg>
+      <Upimg selelctOnly={ true } className={ `img-show ${this.imgs.length >= this.max ? 'hide' : ''}` } style={ { 'width': this.width + 'px', height: this.height + 'px' } } type={ this.type } suffix={ this.suffix } serverurl={ this.serverurl } uploadok={ this.uploadok.bind(this) } title="上传图片"></Upimg>
     </div >
   }
   render () {
     return <div>
-      { this.Show ? this.getAll() : null }
+      { this.Show ? this.getAll() : 12 }
     </div>
   }
 }

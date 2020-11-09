@@ -1,0 +1,9 @@
+[config]{
+}
+@import '../../common/preset.stylus';
+{getTagRoot(button)}{
+  display inline-block
+}
+.{$uiprefix}-btn{
+  font-size red
+}

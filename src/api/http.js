@@ -2,7 +2,7 @@
  * @Author: zhengguozhi
  * @Date: 2019-10-24 14:50:02
  * @LastEditors: xuxueliang
- * @LastEditTime: 2020-03-13 14:08:21
+ * @LastEditTime: 2020-10-21 11:18:49
  */
 import axios from 'axios'
 import qs from 'qs'
@@ -11,7 +11,7 @@ import getApiSig, { setSigerConfig } from '@lib/siger'
 // import { getCookie } from '@lib/common/config/mUtils'
 // import getParam from '@lib/plugins/Sloth/getParam'
 import onlineToTest from '@lib/common/config/onLinetoTest.js'
-import { getUId } from '@lib/eryuSdk'
+// import { getUId } from '@lib/eryuSdk'
 // import { Indicator, Toast } from 'mint-ui' 没有试用mintUi
 // import 'mint-ui/lib/style.css'
 import Yam from 'yamjs'
@@ -26,9 +26,9 @@ setSigerConfig({
   API_SIG_SUFIX: '!hv399v31ur'
 })
 let uId = null
-getUId().then(res => {
-  uId = res.uId || ''
-})
+// getUId().then(res => {
+//   uId = res.uId || ''
+// })
 axios.interceptors.request.use(
   config => {
     if (config.method === 'post') {

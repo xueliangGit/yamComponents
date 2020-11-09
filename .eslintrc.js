@@ -2,7 +2,7 @@
  * @Author: xuxueliang
  * @Date: 2019-10-12 11:43:13
  * @LastEditors: xuxueliang
- * @LastEditTime: 2020-03-12 19:10:59
+ * @LastEditTime: 2020-10-14 14:38:19
  */
 // https://eslint.org/docs/user-guide/configuring
 
@@ -29,7 +29,7 @@ module.exports = {
   rules: {
     // allow async-await
     'generator-star-spacing': 'off',
-    'template-curly-spacing': ["error", "always"],
+    'template-curly-spacing': 'off',
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     // 'vue/no-parsing-error': [2, { 'x-invalid-end-tag': false }],
