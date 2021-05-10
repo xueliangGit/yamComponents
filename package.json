@@ -95,7 +95,7 @@
     "axios": "^0.20.0",
     "eslint-plugin-react": "^7.13.0",
     "jsx-parser": "^1.0.8",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "postcss-plugin-px2rem": "^0.8.1",
     "postcss-preset-env": "^6.7.0",
     "postcss-simple-vars": "^5.0.2",
